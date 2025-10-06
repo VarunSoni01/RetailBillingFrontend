@@ -1,12 +1,14 @@
+import './ManageItem.css';
+
 const ManageItem = () => {
     return (
         <div className="items-container text-light">
             <div className="left-column">
-                Category Detail
+                Item Detail
             </div>
 
             <div className="right-column">
-                Manage Categories
+                Manage Items
             </div>
         </div>
     );

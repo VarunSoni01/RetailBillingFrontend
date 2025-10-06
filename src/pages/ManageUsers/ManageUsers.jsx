@@ -4,11 +4,11 @@ const ManageUsers = () => {
     return (
         <div className="users-container text-light">
             <div className="left-column">
-                Category Detail
+                User Detail
             </div>
 
             <div className="right-column">
-                Manage Categories
+                Manage Users
             </div>
         </div>
     );
