@@ -6,23 +6,19 @@ const UserForm = () => {
                     <div className="card-body">
                         <form>
                             <div className="mb-3">
-                                <label htmlFor="image" className="form-lable"><img src="https://placehold.co/48x48" alt="" width={48} /></label>
-                                <input type="file" name="image" id="image" className="form-control" hidden />
+                                <label htmlFor="name" className="form-label">Name</label>
+                                <input type="text" name="name" id="name" className="form-control" placeholder="Sample Name" />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="name" className="form-control">Name</label>
-                                <input type="text" name="name" id="name" className="form-control" placeholder="Category Name" />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="description" className="form-control">Description</label>
+                                <label htmlFor="description" className="form-label">Description</label>
                                 <textarea rows={5} name="description" id="description" className="form-control" placeholder="Write content here: " />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="bgcolor" className="form-control">Background Color</label>
+                                <label htmlFor="bgcolor" className="form-label">Background Color</label>
                                 <br />
                                 <input type="color" name="bgColor" id="bgcolor" placeholder="#ffffff" />
                             </div>
-                            <button type="submit" className="btn btn-primary w-100" >Save</button>
+                            <button type="submit" className="btn btn-warning w-100" >Save</button>
                         </form>
                     </div>
                 </div>
