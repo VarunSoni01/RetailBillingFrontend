@@ -1,0 +1,31 @@
+.category-container {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    height: calc(100vh - 5rem);
+    background-color: #2C3335;
+    gap: 20px;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 0.7;
+    height: 100%;
+    border: 1px solid white;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.right-column {
+    flex: 0.3;
+    height: 100%;
+    border: 1px solid white;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
