@@ -26,11 +26,11 @@ const CategoryForm = () => {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        setLoading(true);
         if (!image) {
             toast.error("Select image for category");
             return;
         }
+        setLoading(true);
         const formData = new FormData();
         formData.append("category", JSON.stringify(data));
         formData.append("file", image);
@@ -64,7 +64,7 @@ const CategoryForm = () => {
                             <form onSubmit={onSubmitHandler}>
                                 <div className="mb-3">
                                     <label htmlFor="image" className="form-lable"><img src={image ? URL.createObjectURL(image) : assets.uploads} alt="" width={48} /></label>
-                                    <input type="file" name="image" id="image" className="form-control" hidden onChange={(e) => setImage(e.target.files[0])} />
+                                    <input type="file" name="image" id="image" className="form-control" hidden onChange={(e) => setImage(e.target.files[0])} accept="image/*" />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name</label>
