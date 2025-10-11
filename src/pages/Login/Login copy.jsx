@@ -6,18 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 
 const Login = () => {
-    const { setAuthData } = useContext(AppContext);
     const navigate = useNavigate()
     const [isLoading, setLoading] = useState(false);
     const [data, setData] = useState({
         email: "",
         password: ""
     });
+    const [setAuthData] = useContext(AppContext);
 
     const onChangeHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-
+        const name = e.targe.name;
+        const value = e.targe.value;
         setData((data) => ({ ...data, [name]: value }));
     }
 
@@ -26,7 +25,6 @@ const Login = () => {
         setLoading(true);
         try {
             const response = await login(data);
-            console.log(response);
             if (response.status === 200) {
                 toast.success("Login successfull");
                 localStorage.setItem("token", response.data.token);
