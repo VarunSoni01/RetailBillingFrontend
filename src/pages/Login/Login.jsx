@@ -65,8 +65,8 @@ const Login = () => {
                                 <input type="text" name="password" id="password" placeholder="********" className='form-control' onChange={onChangeHandler} value={data.password} />
                             </div>
                             <div className="d-grid">
-                                <button type='submit' className="btn btn-dark btn-lg">
-                                    Sign in
+                                <button type='submit' className="btn btn-dark btn-lg" disabled={isLoading}>
+                                    {isLoading ? "Loading..." : "Sign in"}
                                 </button>
                             </div>
                         </form>
