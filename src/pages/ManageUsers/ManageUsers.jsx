@@ -3,6 +3,7 @@ import UserForm from '../../components/UserForm/UserForm';
 import UsersList from '../../components/UsersList/UsersList';
 import './ManageUsers.css';
 import toast from 'react-hot-toast';
+import { fetchUsers } from '../../service/UserService';
 
 const ManageUsers = () => {
 
@@ -10,7 +11,7 @@ const ManageUsers = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        async function fetchUsers() {
+        async function loadUsers() {
             try {
                 setLoading(true);
                 const response = await fetchUsers();
@@ -23,7 +24,7 @@ const ManageUsers = () => {
             }
         }
 
-        fetchUsers();
+        loadUsers();
     }, [])
 
 

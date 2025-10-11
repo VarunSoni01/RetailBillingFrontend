@@ -1,4 +1,4 @@
-const UsersList = () => {
+const UsersList = ({ Users, setUsers }) => {
     return (
         <div>Users List</div>
     );
