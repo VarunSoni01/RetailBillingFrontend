@@ -1,9 +1,9 @@
-import './DisplayItems.css'
+import './DisplayCategory.css'
 
-const DisplayItems = () => {
+const DisplayCategory = () => {
     return (
-        <div>Display Items</div>
+        <div>Display Category</div>
     )
 }
 
-export default DisplayItems;
+export default DisplayCategory;

@@ -1,6 +1,13 @@
 import { useContext } from 'react';
 import './Explore.css';
 import { AppContext } from '../../context/AppContext';
+import DisplayCategory from '../../components/DisplayCategory/DisplayCategory';
+import DisplayItems from '../../components/DisplayItems/DisplayItems';
+import CustomerForm from '../../components/CustomerForm/CustomerForm';
+import CartItems from '../../components/CartItems/CartItems';
+import CartSummary from '../../components/CartSummary/CartSummary';
+
+
 
 
 const Explore = () => {
@@ -9,20 +16,25 @@ const Explore = () => {
     return (
         <div className="explore-container text-light">
             <div className="left-column">
-                <div className="first-row" style={{ overflowY: 'auto' }}></div>
+                <div className="first-row" style={{ overflowY: 'auto' }}>
+                    <DisplayCategory />
+
+                </div>
                 <hr className="horizontal-line" />
-                <div className="second-row" style={{ overflowY: 'auto' }}></div>
+                <div className="second-row" style={{ overflowY: 'auto' }}>
+                    <DisplayItems />
+                </div>
             </div>
             <div className="right-column d-flex flex-column">
                 <div className="customer-form-container" style={{ height: '15%' }}>
-                    Customer Form
+                    <CustomerForm />
                 </div>
                 <hr className="my-3 text-light" /> {/*Margin y*/}
                 <div className="cart-items-container" style={{ height: '55%', overflowY: 'auto' }}>
-                    Cart Items
+                    <CartItems />
                 </div>
                 <div className="cart-summary-container" style={{ height: '30%' }}>
-                    Cart Summary
+                    <CartSummary />
                 </div>
             </div>
         </div>
