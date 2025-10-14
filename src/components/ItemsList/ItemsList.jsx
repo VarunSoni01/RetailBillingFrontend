@@ -6,7 +6,7 @@ import './ItemList.css'
 
 const ItemsList = () => {
 
-    const { items, setItems } = useContext(AppContext);
+    const { items, setItems, setCategories } = useContext(AppContext);
     const [searchTerm, setSearchTerm] = useState("");
 
     const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -17,6 +17,7 @@ const ItemsList = () => {
             if (response.status === 204) {
                 const updatedItems = items.filter(item => item.itemId !== itemId);
                 setItems(updatedItems);
+
                 toast.success("Item deleted successfully");
             } else {
                 toast.error("Failed to delete item");

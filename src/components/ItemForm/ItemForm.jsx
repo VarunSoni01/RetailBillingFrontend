@@ -6,7 +6,7 @@ import { addItem } from "../../service/ItemService";
 
 const ItemForm = () => {
 
-    const { categories, setItems, items } = useContext(AppContext);
+    const { categories, setCategories, setItems, items } = useContext(AppContext);
     const [image, setImage] = useState(false);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState({
@@ -47,6 +47,8 @@ const ItemForm = () => {
                 });
                 setImage(false);
                 // TODO: update the category state: itemCount
+                setCategories((prevCategories) => (prevCategories.map(category => category.categoryId === data.categoryId ? { ...category, items: category.items + 1 } : category)));
+
             } else {
                 toast.error("Unable to add item");
             }
