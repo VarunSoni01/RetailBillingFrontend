@@ -1,43 +1,116 @@
+import { useContext, useState } from "react";
+import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
+
 const ItemForm = () => {
+
+    const { categories, setItems, items } = useContext(AppContext);
+    const [image, setImage] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState({
+        name: "",
+        categoryId: "",
+        price: "",
+        description: ""
+    });
+
+    const onChangeHandler = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setData((data) => ({ ...data, [name]: value }));
+    }
+
+    const onSubmitHandler = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const formData = new FormData();
+        formData.append('item', data);
+        formData.append('file', image);
+        try {
+            if (!image) {
+                toast.error("Please select image first");
+                return;
+            }
+            const response = await addItem(formData);
+            if (response.status == 201) {
+                toast.success("Item added successfully");
+                setItems([...items, response.data]);
+                setData({
+                    name: "",
+                    categoryId: "",
+                    price: "",
+                    description: ""
+                });
+                setImage(false);
+                // TODO: update the category state: itemCount
+            } else {
+                toast.error("Unable to add item");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Unable to add item");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+
+
     return (
         <div className="item-form" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
             <div className="mx-2 mt-2">
                 <div className="row">
                     <div className="card col-md-8 form-container">
                         <div className="card-body">
-                            <form>
+                            <form onSubmit={onSubmitHandler}>
+                                <div className="mb-3">
+                                    <label htmlFor="image" className="form-label">
+                                        <img src={image ? URL.createObjectURL(image) : assets.uploads} alt="" width={48} />
+                                    </label>
+                                    <input type="file" id="image" className="form-control" hidden
+                                        onChange={(e) => setImage(e.target.files[0])} />
+                                </div>
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Item Name</label>
-                                    <input type="text" name="name" id="name" className="form-control" placeholder="Item Name" />
+                                    <input type="text" name="name" id="name" className="form-control" placeholder="Item Name"
+                                        value={data.name}
+                                        onChange={onChangeHandler} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="category" className="form-label">Category</label>
-                                    <select name="category" id="category" className="form-control">
-                                        <option value="" disabled selected>--Select Category--</option>
-                                        <option value="Category 1">Category 1</option>
-                                        <option value="Category 2">Category 2</option>
-                                        <option value="Category 3">Category 3</option>
-                                        <option value="Category 4">Category 4</option>
-                                        <option value="Category 5">Category 5</option>
+                                    <select name="category" id="category" className="form-control"
+                                        onChange={onChangeHandler}
+                                        value={data.categoryId}>
+                                        <option value="" disabled >--Select Category--</option>
+                                        {
+                                            categories.map((category, index) => (
+                                                <option key={index} value={category.categoryId} > {category.name}</option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="price" className="form-label">Item Price</label>
-                                    <input type="text" name="price" id="price" className="form-control" placeholder="₹100.00" />
+                                    <input type="text" name="price" id="price" className="form-control" placeholder="₹100.00"
+                                        value={data.price}
+                                        onChange={onChangeHandler} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
-                                    <textarea rows={5} name="description" id="description" className="form-control" placeholder="Write content here: " />
+                                    <textarea rows={5} name="description" id="description" className="form-control" placeholder="Write content here: "
+                                        value={data.description}
+                                        onChange={onChangeHandler} />
                                 </div>
 
-                                <button type="submit" className="btn btn-warning w-100" >Save</button>
+                                <button type="submit" className="btn btn-warning w-100" disabled={loading}>{loading ? 'Loading...' : 'Save'}</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div >
 
-        </div>
+        </div >
     );
 }
 
