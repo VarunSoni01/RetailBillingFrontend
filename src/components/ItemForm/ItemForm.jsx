@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
+import { addItem } from "../../service/ItemService";
 
 const ItemForm = () => {
 
@@ -19,14 +20,16 @@ const ItemForm = () => {
         const name = e.target.name;
         const value = e.target.value;
         setData((data) => ({ ...data, [name]: value }));
+        console.log(data);
     }
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         setLoading(true);
         const formData = new FormData();
-        formData.append('item', data);
-        formData.append('file', image);
+        formData.append("item", JSON.stringify(data));
+        formData.append("file", image);
+
         try {
             if (!image) {
                 toast.error("Please select image first");
@@ -78,8 +81,8 @@ const ItemForm = () => {
                                         onChange={onChangeHandler} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="category" className="form-label">Category</label>
-                                    <select name="category" id="category" className="form-control"
+                                    <label htmlFor="categoryId" className="form-label">Category</label>
+                                    <select name="categoryId" id="categoryId" className="form-control"
                                         onChange={onChangeHandler}
                                         value={data.categoryId}>
                                         <option value="" disabled >--Select Category--</option>
