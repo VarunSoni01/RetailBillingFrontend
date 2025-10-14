@@ -25,8 +25,7 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await login(data);
-            console.log(response);
+            const response = await login(data); (response);
             if (response.status === 200) {
                 toast.success("Login successfull");
                 localStorage.setItem("token", response.data.token);

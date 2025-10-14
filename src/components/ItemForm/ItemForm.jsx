@@ -20,7 +20,6 @@ const ItemForm = () => {
         const name = e.target.name;
         const value = e.target.value;
         setData((data) => ({ ...data, [name]: value }));
-        console.log(data);
     }
 
     const onSubmitHandler = async (e) => {

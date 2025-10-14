@@ -12,12 +12,11 @@ import CartSummary from '../../components/CartSummary/CartSummary';
 
 const Explore = () => {
     const { categories } = useContext(AppContext);
-    console.log(categories);
     return (
         <div className="explore-container text-light">
             <div className="left-column">
                 <div className="first-row" style={{ overflowY: 'auto' }}>
-                    <DisplayCategory />
+                    <DisplayCategory categories={categories} />
 
                 </div>
                 <hr className="horizontal-line" />

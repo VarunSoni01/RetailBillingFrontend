@@ -16,7 +16,7 @@ const CategoryForm = () => {
     });
 
     useEffect(() => {
-        console.log(data);
+
     }, [data]);
     const onChangeHandler = (e) => {
         const value = e.target.value;

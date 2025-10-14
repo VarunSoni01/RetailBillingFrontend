@@ -53,9 +53,9 @@ const Menubar = () => {
                             <li>
                                 <a href="#!" className='dropdown-item'>Settings</a>
                                 <a href="#!" className='dropdown-item'>Activity Log</a>
-                                <li>
-                                    <hr className="dropdown-divider" />
-                                </li>
+                                {/* <li> */}
+                                <hr className="dropdown-divider" />
+                                {/* </li> */}
                                 <a href="#!" className='dropdown-item' onClick={logout}>Logout</a>
                             </li>
                         </ul>
