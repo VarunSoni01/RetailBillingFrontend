@@ -9,7 +9,7 @@ const UsersList = ({ users, setUsers }) => {
 
     const deleteUserById = async (userId) => {
         try {
-            const response = await deleteUser(userId);
+            await deleteUser(userId);
             setUsers((prevState) => prevState.filter(user => user.userId !== userId));
             toast.success("User deleted successfully");
         } catch (error) {
