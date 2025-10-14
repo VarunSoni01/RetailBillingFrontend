@@ -6,7 +6,7 @@ import './ItemList.css'
 
 const ItemsList = () => {
 
-    const { items, setItems, setCategories } = useContext(AppContext);
+    const { items, setItems } = useContext(AppContext);
     const [searchTerm, setSearchTerm] = useState("");
 
     const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
