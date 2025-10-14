@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import './Explore.css';
 import { AppContext } from '../../context/AppContext';
 import DisplayCategory from '../../components/DisplayCategory/DisplayCategory';
@@ -12,11 +12,19 @@ import CartSummary from '../../components/CartSummary/CartSummary';
 
 const Explore = () => {
     const { categories } = useContext(AppContext);
+
+    const [selectedCategory, setSelectedCategory] = useState("");
+
+
+
     return (
         <div className="explore-container text-light">
             <div className="left-column">
                 <div className="first-row" style={{ overflowY: 'auto' }}>
-                    <DisplayCategory categories={categories} />
+                    <DisplayCategory
+                        selectedCategory={selectedCategory}
+                        setSelectedCategory={setSelectedCategory}
+                        categories={categories} />
 
                 </div>
                 <hr className="horizontal-line" />

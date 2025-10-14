@@ -1,19 +1,28 @@
 import Category from '../Category/Category';
 import './DisplayCategory.css'
 
-const DisplayCategory = ({ categories }) => {
+const DisplayCategory = ({ selectedCategory, setSelectedCategory, categories }) => {
+
     return (
         <div className='row g-3' style={{ width: '100%', margin: 0 }}>
-            {categories.map(category => (
-                <div key={category.categoryId} className="col-md-3 col-sm-6" style={{ padding: '0 10px' }}>
-                    <div className="category-card">
-                        <h5>{category.name}</h5>
-                        {/* Add more category details here */}
+            {categories.map(category => {
+                return (
+                    <div key={category.categoryId} className="col-md-3 col-sm-6" style={{ padding: '0 10px' }}>
+                        <Category
+                            categoryName={category.name}
+                            imgUrl={category.imgUrl}
+                            numberOfItems={category.items}
+                            bgColor={category.bgColor}
+                            isSelected={selectedCategory == category.categoryId}
+                            onClick={() => {
+                                setSelectedCategory(category.categoryId)
+                            }}
+                        />
                     </div>
-                </div>
-            ))}
-        </div>
-    );
+                )
+            })}
+        </div >
+    )
 }
 
 export default DisplayCategory;
