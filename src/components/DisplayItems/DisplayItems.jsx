@@ -1,14 +1,32 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import './DisplayItems.css'
 import { AppContext } from '../../context/AppContext'
 import Item from '../Item/Item';
+import SearchBox from '../SearchBox/SearchBox';
 
 const DisplayItems = () => {
     const { items } = useContext(AppContext);
+    const [searchText, setSearchText] = useState("");
+
+    const filteredItems = items.filter(item => {
+        // if(item.name == searchText)
+        return item.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+
+    console.log(items);
+    console.log(filteredItems);
+
     return (
         <div className="p-3">
+            <div className='d-flex justify-content-between align-items-center mb-4'>
+                <div></div>
+                <div>
+                    <SearchBox
+                        onSearch={setSearchText} />
+                </div>
+            </div>
             <div className="row g-3">
-                {items.map((item, index) => (
+                {filteredItems.map((item, index) => (
                     <div key={index} className='col-md-4 col-sm-6'>
                         <Item
                             itemName={item.name}
