@@ -4,13 +4,20 @@ import { AppContext } from '../../context/AppContext'
 import Item from '../Item/Item';
 import SearchBox from '../SearchBox/SearchBox';
 
-const DisplayItems = () => {
+const DisplayItems = ({ selectedCategory }) => {
     const { items } = useContext(AppContext);
     const [searchText, setSearchText] = useState("");
 
     const filteredItems = items.filter(item => {
         // if(item.name == searchText)
-        return item.name.toLowerCase().includes(searchText.toLowerCase());
+        // return item.name.toLowerCase().includes(searchText.toLowerCase());
+
+        if (!selectedCategory) {
+            const filteredItems = items.filter(item => {
+                // if(item.name == searchText)
+                return item.name.toLowerCase().includes(searchText.toLowerCase);
+            });
+        }
     });
 
     console.log(items);
