@@ -9,19 +9,12 @@ const DisplayItems = ({ selectedCategory }) => {
     const [searchText, setSearchText] = useState("");
 
     const filteredItems = items.filter(item => {
-        // if(item.name == searchText)
-        // return item.name.toLowerCase().includes(searchText.toLowerCase());
+        if (!selectedCategory) return true;
+        return item.categoryId == selectedCategory;
 
-        if (!selectedCategory) {
-            const filteredItems = items.filter(item => {
-                // if(item.name == searchText)
-                return item.name.toLowerCase().includes(searchText.toLowerCase);
-            });
-        }
-    });
+    }).filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
 
-    console.log(items);
-    console.log(filteredItems);
+    console.log(selectedCategory);
 
     return (
         <div className="p-3">
@@ -33,16 +26,18 @@ const DisplayItems = ({ selectedCategory }) => {
                 </div>
             </div>
             <div className="row g-3">
-                {filteredItems.map((item, index) => (
-                    <div key={index} className='col-md-4 col-sm-6'>
-                        <Item
-                            itemName={item.name}
-                            itemPrice={item.price}
-                            itemImage={item.imgUrl}
-                            itemId={item.itemId}
-                        />
-                    </div>
-                ))}
+                {filteredItems.map((item, index) => {
+                    return (
+                        <div key={index} className='col-md-4 col-sm-6'>
+                            <Item
+                                itemName={item.name}
+                                itemPrice={item.price}
+                                itemImage={item.imgUrl}
+                                itemId={item.itemId}
+                                categoryName={item.categoryName}
+                            />
+                        </div>);
+                })}
             </div>
         </div>
     )
