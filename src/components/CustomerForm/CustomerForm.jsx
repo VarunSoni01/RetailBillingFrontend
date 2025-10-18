@@ -2,6 +2,7 @@ import './CustomerForm.css'
 
 const CustomerForm = ({ customerName, setCustomerName, mobileNumber, setMobileNumber }) => {
 
+
     return (
         <div className="p-3">
             <div className="mb-3">

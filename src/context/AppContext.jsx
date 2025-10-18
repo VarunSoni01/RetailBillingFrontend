@@ -13,6 +13,17 @@ export const AppContextProvider = (props) => {
         role: null
     });
 
+    const [cartItems, setCartItems] = useState([]);
+
+    const addToCart = (item) => {
+        const existingItem = cartItems.find((cartItem) => cartItem.name === item.name);
+        if (existingItem) {
+            setCartItems(cartItems.map(cartItem => cartItem.name === item.name ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem));
+        } else {
+            setCartItems([...cartItems, { ...item, quantity: 1 }]);
+        }
+    }
+
     // Hook
     useEffect(() => {
         async function loadData() {
@@ -42,7 +53,8 @@ export const AppContextProvider = (props) => {
         auth,
         setAuthData,
         items,
-        setItems
+        setItems,
+        addToCart
     }
 
     return <AppContext.Provider value={contextValue}>

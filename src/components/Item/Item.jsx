@@ -1,8 +1,16 @@
+import { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 import './Item.css'
 
 const Item = ({ itemName, itemPrice, itemImage, categoryName, itemId }) => {
+    const { addToCart } = useContext(AppContext);
     const handleAddToCart = () => {
-
+        addToCart({
+            name: itemName,
+            price: itemPrice,
+            quantity: 1,
+            itemId: itemId
+        });
     }
     return (
         <div className="p-3 bg-dark rounded shadow-sm h-100 d-flex align-items-center item-card">
