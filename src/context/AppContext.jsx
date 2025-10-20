@@ -24,6 +24,16 @@ export const AppContextProvider = (props) => {
         }
     }
 
+    const removeFromCart = (itemId) => {
+        setCartItems(cartItems.filter(item => item.id !== itemId));
+    }
+
+    const updateQuantity = (item, newQuantity) => {
+        setCartItems(
+            cartItems.map(item => item.itemId === itemId ? { ...item, quantity: newQuantity } : item)
+        );
+    }
+
     // Hook
     useEffect(() => {
         async function loadData() {
@@ -55,7 +65,9 @@ export const AppContextProvider = (props) => {
         items,
         setItems,
         addToCart,
-        cartItems
+        cartItems,
+        removeFromCart,
+        updateQuantity
     }
 
     return <AppContext.Provider value={contextValue}>
