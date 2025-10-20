@@ -31,6 +31,9 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
                 <button className="btn btn-success flex-grow-1">Cash</button>
                 <button className="btn btn-primary flex-grow-1">UPI</button>
             </div>
+            <div className="d-flex gap-3 mt-3">
+                <button className="btn btn-warning flex-grow-1">Place order</button>
+            </div>
 
             <ReceiptPopup />
         </div >
