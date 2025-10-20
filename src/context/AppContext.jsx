@@ -25,10 +25,10 @@ export const AppContextProvider = (props) => {
     }
 
     const removeFromCart = (itemId) => {
-        setCartItems(cartItems.filter(item => item.id !== itemId));
+        setCartItems(cartItems.filter(item => item.itemId !== itemId));
     }
 
-    const updateQuantity = (item, newQuantity) => {
+    const updateQuantity = (itemId, newQuantity) => {
         setCartItems(
             cartItems.map(item => item.itemId === itemId ? { ...item, quantity: newQuantity } : item)
         );

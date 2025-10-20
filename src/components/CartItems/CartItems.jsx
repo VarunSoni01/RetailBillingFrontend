@@ -3,7 +3,7 @@ import './CartItems.css'
 import { AppContext } from '../../context/AppContext';
 
 const CartItems = () => {
-    const { cartItems } = useContext(AppContext);
+    const { cartItems, removeFromCart, updateQuantity } = useContext(AppContext);
     console.log("From cartItems component: ", cartItems);
     return (
         <div className="p-3 h-100 overflow-y-auto">
@@ -23,15 +23,19 @@ const CartItems = () => {
                             </div>
                             <div className="d-flex justify-content-between align-items center">
                                 <div className="d-flex align-items center gap-2">
-                                    <button className="btn btn-danger btn-sm" disabled={item.quantity == 1}>
+                                    <button className="btn btn-danger btn-sm"
+                                        onClick={() => updateQuantity(item.itemId, item.quantity - 1)}
+                                        disabled={item.quantity == 1}>
                                         <i className="bi bi-dash"></i>
                                     </button>
                                     <span className='text-light'>{item.quantity}</span>
-                                    <button className="btn btn-primary btn-sm">
+                                    <button className="btn btn-primary btn-sm"
+                                        onClick={() => updateQuantity(item.itemId, item.quantity + 1)}>
                                         <i className="bi bi-plus"></i>
                                     </button>
                                 </div>
-                                <button className="btn btn-danger " style={{ width: "auto" }}>
+                                <button className="btn btn-danger " style={{ width: "auto" }}
+                                    onClick={() => removeFromCart(item.itemId)}>
                                     <i className="bi bi-trash"></i>
                                 </button>
                             </div>
