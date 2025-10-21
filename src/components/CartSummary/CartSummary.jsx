@@ -78,11 +78,13 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
             customerName, // it is same as customerName: customerName
             phoneNumber: mobileNumber,
             cartItems,
-            subtotal: totalAmount,
+            subTotal: totalAmount,
             tax,
             grandTotal,
             paymentMethod: paymentMode.toUpperCase()
         }
+        // console.log(orderData);
+        // return;
         setIsProcessing(true);
         try {
             const response = await createOrder(orderData);
