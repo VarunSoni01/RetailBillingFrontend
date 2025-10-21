@@ -9,14 +9,30 @@ import { AppConstants } from '../../utils/constants';
 
 const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNumber }) => {
 
-    const { cartItems } = useContext(AppContext);
+    const { cartItems, clearCart } = useContext(AppContext);
 
     const [isProcessing, setIsProcessing] = useState(false);
     const [orderDetails, setOrderDetails] = useState(null);
+    const [showPopUp, setShowPopUp] = useState(false);
 
     const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     const tax = totalAmount * 0.01;
     const grandTotal = totalAmount + tax;
+
+    const clearAll = () => {
+        setCustomerName("");
+        setMobileNumber("");
+        clearCart();
+    }
+
+    const placeOrder = async () => {
+        setShowPopUp(true);
+        clearAll();
+    }
+
+    const handlePrintReceipt = () => {
+        window.print();
+    }
 
     /**
      * Dynamically injects the Razorpay checkout script into the document.
@@ -65,7 +81,7 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
             subtotal: totalAmount,
             tax,
             grandTotal,
-            paymentMode: paymentMode.toUpperCase()
+            paymentMethod: paymentMode.toUpperCase()
         }
         setIsProcessing(true);
         try {
@@ -91,7 +107,7 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
                     name: "My Retail Shop",
                     description: "Order Payment",
                     handler: async function (response) {
-                        verifyPaymentHandler(response, savedData);
+                        await verifyPaymentHandler(response, savedData);
                     },
                     prefill: {
                         name: customerName,
@@ -107,6 +123,7 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
                         }
                     }
                 };
+                console.log(options);
                 const razorpay = new window.Razorpay(options);
                 razorpay.on("payment.failed", async function (response) {
                     await deleteOrderOnFailure(savedData.orderId);
@@ -172,14 +189,23 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
             </div>
 
             <div className="d-flex gap-3">
-                <button className="btn btn-success flex-grow-1">Cash</button>
-                <button className="btn btn-primary flex-grow-1">UPI</button>
+                <button className="btn btn-success flex-grow-1"
+                    onClick={() => completePayment("cash")}
+                    disabled={isProcessing}
+                >{isProcessing ? "Processing..." : "Cash"}</button>
+                <button className="btn btn-primary flex-grow-1"
+                    onClick={() => completePayment("upi")}
+                    disabled={isProcessing}
+                >{isProcessing ? "Processing..." : "UPI"}</button>
             </div>
             <div className="d-flex gap-3 mt-3">
-                <button className="btn btn-warning flex-grow-1">Place order</button>
+                <button className="btn btn-warning flex-grow-1"
+                    onClick={placeOrder}
+                    disabled={isProcessing || !orderDetails}
+                >Place order</button>
             </div>
 
-            <ReceiptPopup />
+            {/* <ReceiptPopup /> */}
         </div >
     )
 }

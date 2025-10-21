@@ -34,6 +34,10 @@ export const AppContextProvider = (props) => {
         );
     }
 
+    const clearCart = () => {
+        setCartItems([]);
+    }
+
     // Hook
     useEffect(() => {
         async function loadData() {
@@ -67,7 +71,8 @@ export const AppContextProvider = (props) => {
         addToCart,
         cartItems,
         removeFromCart,
-        updateQuantity
+        updateQuantity,
+        clearCart
     }
 
     return <AppContext.Provider value={contextValue}>
