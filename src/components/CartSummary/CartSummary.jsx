@@ -4,7 +4,7 @@ import { AppContext } from '../../context/AppContext';
 import ReceiptPopup from '../ReceiptPopup/ReceiptPopup';
 import { createOrder, deleteOrder } from '../../service/OrderService';
 import toast from 'react-hot-toast';
-import { createRazorpayOrder } from '../../service/PaymentService';
+import { createRazorpayOrder, verifyPayment } from '../../service/PaymentService';
 import { AppConstants } from '../../utils/constants';
 
 const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNumber }) => {
@@ -91,7 +91,7 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
                     name: "My Retail Shop",
                     description: "Order Payment",
                     handler: async function (response) {
-                        // TO DO verify the payment
+                        verifyPaymentHandler(response, savedData);
                     },
                     prefill: {
                         name: customerName,
@@ -123,6 +123,36 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
             setIsProcessing(false);
         }
     }
+
+    const verifyPaymentHandler = async (response, savedOrder) => {
+        const paymentData = {
+            razorpayOrderId: response.razorpay_order_id,
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpaySignature: response.razorpay_signature,
+            orderId: savedOrder.orderId
+        };
+
+        try {
+            const verifyResponse = await verifyPayment(paymentData);
+            if (verifyResponse.status === 200) {
+                toast.success("Payment successful");
+                setOrderDetails({
+                    ...savedOrder,
+                    paymentDetails: {
+                        razorpayOrderId: response.razorpay_order_id,
+                        razorpayPaymentId: response.razorpay_payment_id,
+                        razorpaySignature: response.razorpay_signature
+                    }
+                })
+            } else {
+                toast.error("Payment verification failed");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Payment verification failed");
+        }
+    }
+
 
     return (
         <div className="mt-2">
