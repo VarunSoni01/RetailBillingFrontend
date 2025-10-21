@@ -1,4 +1,5 @@
 import './ReceiptPopup.css';
+import './Print.css';
 
 
 const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
@@ -7,7 +8,7 @@ const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
         <div className="receipt-popup-overlay text-dark">
             <div className="receipt-popup">
                 <div className="text-center mb-4">
-                    <i className="bi bi-check-circle-fill text-success fs">
+                    <i className="bi bi-check-circle-fill text-success fs-1">
 
                     </i>
                 </div>
@@ -40,7 +41,7 @@ const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
                     <span><strong>Tax(1%):</strong></span>
                     <span>₹{orderDetails.tax.toFixed(2)}</span>
                 </div>
-                <div className="d-flex justify-content-between mb-2">
+                <div className="d-flex justify-content-between mb-4">
                     <span><strong>Grand Tota:</strong></span>
                     <span>₹{orderDetails.grandTotal.toFixed(2)}</span>
                 </div>
