@@ -204,8 +204,11 @@ const CartSummary = ({ customerName, mobileNumber, setCustomerName, setMobileNum
                     disabled={isProcessing || !orderDetails}
                 >Place order</button>
             </div>
-
-            {/* <ReceiptPopup /> */}
+            {
+                showPopUp && (
+                    <ReceiptPopup />
+                )
+            }
         </div >
     )
 }
