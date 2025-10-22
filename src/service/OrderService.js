@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export const lastestOrders = async () => {
-    return await axios.get("http://localhost:5000/api/orders", { headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}` } });
+    return await axios.get("http://localhost:8080/api/v1.0/orders", { headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}` } });
 }
 
 export const createOrder = async (order) => {

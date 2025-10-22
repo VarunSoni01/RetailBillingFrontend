@@ -42,6 +42,9 @@ const Menubar = () => {
                     <li className="nav-item">
                         <Link className="nav-link" to="/users">Manage Users</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/orders">Order History</Link>
+                    </li>
                 </ul>
                 {/* Add the user profile dropdown here */}
                 <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -53,9 +56,7 @@ const Menubar = () => {
                             <li>
                                 <a href="#!" className='dropdown-item'>Settings</a>
                                 <a href="#!" className='dropdown-item'>Activity Log</a>
-                                {/* <li> */}
                                 <hr className="dropdown-divider" />
-                                {/* </li> */}
                                 <a href="#!" className='dropdown-item' onClick={logout}>Logout</a>
                             </li>
                         </ul>
