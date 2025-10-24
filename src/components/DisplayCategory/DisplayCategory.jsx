@@ -23,7 +23,7 @@ const DisplayCategory = ({ selectedCategory, setSelectedCategory, categories }) 
                     <div key={category.categoryId} className="col-md-3 col-sm-6" style={{ padding: '0 10px' }}>
                         <Category
                             categoryName={category.name}
-                            imgUrl={category.imgUrl}
+                            imgUrl={category.imageUrl}
                             numberOfItems={category.items}
                             bgColor={category.bgColor}
                             isSelected={selectedCategory == category.categoryId}
