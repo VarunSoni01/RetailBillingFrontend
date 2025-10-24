@@ -52,19 +52,19 @@ const UserForm = ({ setUsers }) => {
                                 <label htmlFor="name" className="form-label">Name</label>
                                 <input type="text" name="name" id="name" className="form-control" placeholder="User Name"
                                     value={data.name}
-                                    onChange={onChangeHandler} />
+                                    onChange={onChangeHandler} required />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="email" className="form-label">Email</label>
                                 <input type="email" name="email" id="email" className="form-control" placeholder="name@example.com"
                                     value={data.email}
-                                    onChange={onChangeHandler} />
+                                    onChange={onChangeHandler} required />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label">Password</label>
                                 <input type="password" name="password" id="password" className="form-control" placeholder="********"
                                     value={data.password}
-                                    onChange={onChangeHandler} />
+                                    onChange={onChangeHandler} required />
                             </div>
                             <button type="submit" className="btn btn-warning w-100"
                                 disabled={loading}>{loading ? 'Loading... ' : 'Save'}</button>

@@ -79,13 +79,14 @@ const ItemForm = () => {
                                     <label htmlFor="name" className="form-label">Item Name</label>
                                     <input type="text" name="name" id="name" className="form-control" placeholder="Item Name"
                                         value={data.name}
-                                        onChange={onChangeHandler} />
+                                        onChange={onChangeHandler}
+                                        required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="categoryId" className="form-label">Category</label>
                                     <select name="categoryId" id="categoryId" className="form-control"
                                         onChange={onChangeHandler}
-                                        value={data.categoryId}>
+                                        value={data.categoryId} required>
                                         <option value="" disabled >--Select Category--</option>
                                         {
                                             categories.map((category, index) => (
@@ -98,13 +99,13 @@ const ItemForm = () => {
                                     <label htmlFor="price" className="form-label">Item Price</label>
                                     <input type="text" name="price" id="price" className="form-control" placeholder="₹100.00"
                                         value={data.price}
-                                        onChange={onChangeHandler} />
+                                        onChange={onChangeHandler} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
                                     <textarea rows={5} name="description" id="description" className="form-control" placeholder="Write content here: "
                                         value={data.description}
-                                        onChange={onChangeHandler} />
+                                        onChange={onChangeHandler} required />
                                 </div>
 
                                 <button type="submit" className="btn btn-warning w-100" disabled={loading}>{loading ? 'Loading...' : 'Save'}</button>
