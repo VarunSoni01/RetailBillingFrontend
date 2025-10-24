@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import Menubar from './Components/Menubar/Menubar';
+import Menubar from './components/Menubar/Menubar';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Explore from './pages/Explore/Explore';
 import ManageCategory from './pages/ManageCategory/ManageCategory';
