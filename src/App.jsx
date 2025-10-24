@@ -10,7 +10,7 @@ import Login from './pages/Login/Login';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 import { useContext } from 'react';
 import { AppContext } from './context/AppContext';
-import { all } from 'axios';
+import NotFound from './pages/NotFound/NotFound';
 
 const App = () => {
     const location = useLocation();
@@ -24,6 +24,7 @@ const App = () => {
     }
 
     const ProtectedRoute = ({ element, allowedRoles }) => {
+        console.log("Auth Role:", auth.role);
         if (!auth.token) {
             return <Navigate to="/login" replace />;
         }
@@ -51,6 +52,7 @@ const App = () => {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/login" element={<LoginRoute element={<Login />} />} />
                 <Route path="/orders" element={<OrderHistory />} />
+                <Route path="*" element={<NotFound />} />
 
             </Routes>
         </div>

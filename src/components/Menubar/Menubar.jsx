@@ -19,8 +19,6 @@ const Menubar = () => {
     }
 
     const isActive = (path) => {
-        console.log("path", path);
-        console.log("location", location.pathname);
         return location.pathname === path;
     }
 
