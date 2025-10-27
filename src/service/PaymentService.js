@@ -1,10 +1,11 @@
 import axios from "axios";
+import { ApiPaths } from "../utils/constants";
 
 export const createRazorpayOrder = async (data) => {
     // data contains amount and currency
-    return await axios.post("http://localhost:8080/api/v1.0/payments/create-order", data, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
+    return await axios.post(`${ApiPaths.BASE_URL}/payments/create-order`, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
 }
 
 export const verifyPayment = async (paymentData) => {
-    return await axios.post("http://localhost:8080/api/v1.0/payments/verify", paymentData, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
-} 
+    return await axios.post(`${ApiPaths.BASE_URL}/payments/verify`, paymentData, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
+}
