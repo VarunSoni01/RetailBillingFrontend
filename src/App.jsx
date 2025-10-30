@@ -41,8 +41,10 @@ const App = () => {
             <Toaster />
             <Routes>
 
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/explore" element={<Explore />} />
+                {/* Protected routes */}
+                <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+                <Route path="/explore" element={<ProtectedRoute element={<Explore />} />} />
+
 
                 {/* Admin only routes */}
                 <Route path="/categories" element={<ProtectedRoute element={<ManageCategory />} allowedRoles={["ROLE_ADMIN"]} />} />
