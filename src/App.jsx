@@ -51,9 +51,9 @@ const App = () => {
                 <Route path="/items" element={<ProtectedRoute element={<ManageItem />} allowedRoles={["ROLE_ADMIN"]} />} />
                 <Route path="/users" element={<ProtectedRoute element={<ManageUsers />} allowedRoles={["ROLE_ADMIN"]} />} />
 
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<ProtectedRoute element={<Dashboard />} />} />
                 <Route path="/login" element={<LoginRoute element={<Login />} />} />
-                <Route path="/orders" element={<OrderHistory />} />
+                <Route path="/orders" element={<ProtectedRoute element={<OrderHistory />} />} />
                 <Route path="*" element={<NotFound />} />
 
             </Routes>
