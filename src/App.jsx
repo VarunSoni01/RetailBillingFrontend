@@ -17,6 +17,15 @@ const App = () => {
     const { auth } = useContext(AppContext);
 
     const LoginRoute = ({ element }) => {
+        // Check if user is on mobile device
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            return <div style={{ padding: '20px', textAlign: 'center' }}>
+                <h2>Desktop Only</h2>
+                <p>This application is only accessible on desktop devices. Please use a desktop or laptop computer.</p>
+            </div>;
+        }
+
         if (auth.token) {
             return <Navigate to="/dashboard" replace />;
         }
@@ -24,7 +33,14 @@ const App = () => {
     }
 
     const ProtectedRoute = ({ element, allowedRoles }) => {
-        console.log("Auth Role:", auth.role);
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            return <div style={{ padding: '20px', textAlign: 'center' }}>
+                <h2>Desktop Only</h2>
+                <p>This application is only accessible on desktop devices. Please use a desktop or laptop computer.</p>
+            </div>;
+        }
+
         if (!auth.token) {
             return <Navigate to="/login" replace />;
         }
